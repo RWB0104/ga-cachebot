@@ -1,6 +1,6 @@
 import { postGoogleLogin } from '@ga-cachebot/api/auth';
 import { PopularPage, postPopularData } from '@ga-cachebot/api/data';
-import { writeFileSync } from 'fs';
+import { mkdirSync, writeFileSync } from 'fs';
 
 function mapper(data: PopularPage): string[]
 {
@@ -58,13 +58,15 @@ async function main(): Promise<void>
 
 	console.log('👤 Google Login succeed.');
 
+	mkdirSync('dist');
+
 	const postData = await postPopularData('posts', auth);
 
 	if (postData)
 	{
 		const popularUrl = mapper(postData);
 
-		writeFileSync('posts.json', JSON.stringify(popularUrl), 'utf8');
+		writeFileSync('dist/posts.json', JSON.stringify(popularUrl), 'utf8');
 
 		console.info('📄 posts.json generated.');
 	}
@@ -82,7 +84,7 @@ async function main(): Promise<void>
 	{
 		const popularUrl = mapper(projectData);
 
-		writeFileSync('projects.json', JSON.stringify(popularUrl), 'utf8');
+		writeFileSync('dist/projects.json', JSON.stringify(popularUrl), 'utf8');
 
 		console.info('📄 projects.json generated.');
 	}
