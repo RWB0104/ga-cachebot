@@ -1,0 +1,21 @@
+{
+  "name": "ga-cachebot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.0",
+  "devDependencies": {
+    "@itcode-dev/eslint-config": "^3.5.0",
+    "@types/node": "^24.0.1",
+    "eslint": "^9.28.0",
+    "tsx": "^4.20.1",
+    "typescript": "^5.8.3"
+  }
+}
