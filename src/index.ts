@@ -1,12 +1,35 @@
-import { postGoogleLogin } from '@ga-cachebot/api/auth';
-import { PopularPage, postPopularData } from '@ga-cachebot/api/data';
-import { mkdirSync, writeFileSync } from 'fs';
+/**
+ * 인덱스 모듈
+ *
+ * @author RWB
+ * @since 2025.06.12 Thu 16:43:42
+ */
 
-function mapper(data: PopularPage): string[]
+import {
+	mkdirSync,
+	writeFileSync
+} from 'fs';
+
+import { postGoogleLogin } from '@ga-cachebot/api/auth';
+import { postPopularData } from '@ga-cachebot/api/data';
+
+import type { PopularPage } from '@ga-cachebot/api/data';
+
+/**
+ * 매퍼 반환 메서드
+ *
+ * @param {PopularPage} data: PopularPage
+ *
+ * @returns {string[]} URL
+ */
+function mapper(data?: PopularPage): string[]
 {
 	return data?.rows?.map(({ dimensionValues }) => dimensionValues[0].value) ?? [];
 }
 
+/**
+ * 메인 비동기 메서드
+ */
 async function main(): Promise<void>
 {
 	console.log('');
@@ -18,9 +41,9 @@ async function main(): Promise<void>
 	console.log('');
 	console.log('');
 
-	const clientId = process.argv[2];
-	const clientSecret = process.argv[3];
-	const refreshToken = process.argv[4];
+	const clientId = process.argv[2] as string | undefined;
+	const clientSecret = process.argv[3] as string | undefined;
+	const refreshToken = process.argv[4] as string | undefined;
 
 	if (clientId === undefined)
 	{
@@ -44,9 +67,9 @@ async function main(): Promise<void>
 	}
 
 	const auth = await postGoogleLogin({
-		clientId: clientId,
-		clientSecret: clientSecret,
-		refreshToken: refreshToken
+		clientId,
+		clientSecret,
+		refreshToken
 	});
 
 	if (auth === undefined)
@@ -99,4 +122,4 @@ async function main(): Promise<void>
 	console.info('🦙 works done.');
 }
 
-main();
+await main();

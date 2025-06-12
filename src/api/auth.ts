@@ -5,7 +5,7 @@
  * @since 2025.06.12 Thu 10:52:25
  */
 
-import { GoogleAuth } from '@ga-cachebot/api';
+import type { GoogleAuth } from '@ga-cachebot/api';
 
 export interface GoogleAuthRequest
 {
@@ -32,7 +32,9 @@ export interface GoogleAuthRequest
  *
  * @returns {Promise} 비동기 GoogleAuth
  */
-export async function postGoogleLogin({ clientId, clientSecret, refreshToken }: GoogleAuthRequest): Promise<GoogleAuth | undefined>
+export async function postGoogleLogin({
+	clientId, clientSecret, refreshToken
+}: GoogleAuthRequest): Promise<GoogleAuth | undefined>
 {
 	const auth = await fetch('https://accounts.google.com/o/oauth2/token', {
 		body: JSON.stringify({
@@ -54,4 +56,3 @@ export async function postGoogleLogin({ clientId, clientSecret, refreshToken }: 
 
 	return undefined;
 }
-

@@ -5,7 +5,7 @@
  * @since 2025.06.12 Thu 10:52:41
  */
 
-import { GoogleAuth } from '@ga-cachebot/api';
+import type { GoogleAuth } from '@ga-cachebot/api';
 
 export type DataType = 'posts' | 'projects';
 
