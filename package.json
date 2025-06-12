@@ -2,9 +2,9 @@
   "name": "ga-cachebot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "start": "pnpm dlx tsx src/index.ts",
+    "start": "echo \"try -> npx tsx src/index.ts\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +15,8 @@
     "@itcode-dev/eslint-config": "^3.5.0",
     "@types/node": "^24.0.1",
     "eslint": "^9.28.0",
-    "typescript": "^5.8.3"
+    "jiti": "^2.4.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.34.0"
   }
 }
